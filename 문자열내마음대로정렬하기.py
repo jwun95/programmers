@@ -1,23 +1,19 @@
 def solution(strings, n):
-    base_list = []
+    base_list = {}
+    base = []
     answer = []
-    
-    #strings.sort()
-    
+
+    strings.sort()
+
     for item in strings:
-        base_list.append(item[n])
-    
-    #print(base_list)
-    base_list.sort()
+        base_list[item] = item[n]
 
-    for i in range(0,len(base_list)):
-        for k in range(0,len(strings)):
-            if base_list[i] == strings[k][n]:
+    base = sorted(base_list.items(), key = lambda x : x[1])
 
-                answer.append(strings[k])
+    for i in base:
+        answer.append(i[0])
 
-    
-    return answer      
+    return answer
 
 k = ["sun", "bed", "car"]
 s = ["abce", "abcd", "cdx"]

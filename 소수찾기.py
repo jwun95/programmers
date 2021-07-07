@@ -1,20 +1,24 @@
 def solution(n):
-    answer = 0
-    gogo = []
-    
-    if n == 2:
-        return 1
-       
-    else:    
-        for i in range(3,n+1):
-            count = 0 
-            for k in range(2,i):
-                if i % k == 0:
-                    count = 0
-                    gogo.append(i)
+    sieve = [True] * (n + 1)
 
-    answer = len(set(gogo))
+    if n > 7:
+        m = int(n ** 0.5)
+
+    else:
+        m = n
     
+    for i in range(2, m + 1):
+        if sieve[i] == True:
+            for j in range(i+i, len(sieve), i):
+                sieve[j] = False
+
+
+
+
+    # 소수 목록 산출
+    answer = [i for i in range(2, n+1) if sieve[i] == True]
+
     return answer
 
-print(solution(10))
+
+print(solution(100))
